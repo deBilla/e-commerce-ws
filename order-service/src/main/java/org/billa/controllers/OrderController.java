@@ -1,5 +1,6 @@
 package org.billa.controllers;
 
+import org.billa.components.OrderDetails;
 import org.billa.entities.Order;
 import org.billa.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ public class OrderController {
     private OrderService orderService;
 
     @GetMapping("")
-    public List<Order> getAllOrders() {
+    public List<OrderDetails> getAllOrders() throws InterruptedException {
         return orderService.getAllOrders();
     }
 
