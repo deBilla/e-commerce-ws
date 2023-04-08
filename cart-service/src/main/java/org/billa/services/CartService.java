@@ -29,9 +29,11 @@ public class CartService {
         if (existingCart == null) {
             return null;
         }
-        existingCart.setName(cart.getName());
-        existingCart.setDescription(cart.getDescription());
-        existingCart.setPrice(cart.getPrice());
+        existingCart.setItems(cart.getItems());
+        existingCart.setUpdatedAt(cart.getUpdatedAt());
+        existingCart.setCreatedAt(cart.getCreatedAt());
+        existingCart.setStatus(cart.getStatus());
+        existingCart.setTotalPrice(cart.getTotalPrice());
         return cartRepository.save(existingCart);
     }
 

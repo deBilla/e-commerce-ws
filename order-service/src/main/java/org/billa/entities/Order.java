@@ -1,45 +1,103 @@
 package org.billa.entities;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
 public class Order {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long orderID;
 
-    private String name;
+    private Long customer_id;
 
-    private String description;
+    private LocalDate orderDate;
 
-    private double price;
+    private String orderStatus;
 
-    public String getName() {
-        return name;
+    private String shippingAddress;
+
+    private String billingAddress;
+
+    private Double totalAmount;
+
+    private String paymentMethod;
+
+    @OneToMany(mappedBy = "order")
+    private List<OrderItem> items;
+
+    public Long getOrderID() {
+        return orderID;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setOrderID(Long orderID) {
+        this.orderID = orderID;
     }
 
-    public String getDescription() {
-        return description;
+    public Long getCustomer_id() {
+        return customer_id;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setCustomer_id(Long customer_id) {
+        this.customer_id = customer_id;
     }
 
-    public double getPrice() {
-        return price;
+    public LocalDate getOrderDate() {
+        return orderDate;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setOrderDate(LocalDate orderDate) {
+        this.orderDate = orderDate;
     }
 
-    public Long getId() {
-        return id;
+    public String getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public String getShippingAddress() {
+        return shippingAddress;
+    }
+
+    public void setShippingAddress(String shippingAddress) {
+        this.shippingAddress = shippingAddress;
+    }
+
+    public String getBillingAddress() {
+        return billingAddress;
+    }
+
+    public void setBillingAddress(String billingAddress) {
+        this.billingAddress = billingAddress;
+    }
+
+    public Double getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(Double totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public List<OrderItem> getItems() {
+        return items;
+    }
+
+    public void setItems(List<OrderItem> items) {
+        this.items = items;
     }
 }

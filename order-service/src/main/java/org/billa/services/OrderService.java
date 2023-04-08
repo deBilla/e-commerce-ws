@@ -29,9 +29,9 @@ public class OrderService {
         if (existingOrder == null) {
             return null;
         }
-        existingOrder.setName(order.getName());
-        existingOrder.setDescription(order.getDescription());
-        existingOrder.setPrice(order.getPrice());
+        existingOrder.setOrderDate(order.getOrderDate());
+        existingOrder.setOrderStatus(order.getOrderStatus());
+        existingOrder.setItems(order.getItems());
         return orderRepository.save(existingOrder);
     }
 
