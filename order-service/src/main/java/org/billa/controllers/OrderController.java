@@ -15,7 +15,7 @@ public class OrderController {
     private OrderService orderService;
 
     @GetMapping("")
-    public List<OrderDetails> getAllOrders() throws InterruptedException {
+    public List<OrderDetails> getAllOrders() {
         return orderService.getAllOrders();
     }
 

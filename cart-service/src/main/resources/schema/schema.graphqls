@@ -1,0 +1,8 @@
+type Query {
+    carts(idFilter: String): [Cart]
+}
+
+type Cart {
+    id: Int
+    totalPrice: Int
+}

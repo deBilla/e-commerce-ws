@@ -1,22 +1,15 @@
 package org.billa.services;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.kafka.clients.producer.RecordMetadata;
 import org.billa.components.OrderDetails;
 import org.billa.entities.Order;
 import org.billa.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
-import org.springframework.util.concurrent.ListenableFuture;
-import org.springframework.util.concurrent.ListenableFutureCallback;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -24,7 +17,6 @@ public class OrderService {
     @Autowired
     private OrderRepository orderRepository;
 
-    private final CountDownLatch latch = new CountDownLatch(10);
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
     CompletableFuture<String> future = new CompletableFuture<>();
@@ -59,10 +51,6 @@ public class OrderService {
 
     public void deleteOrder(Long id) {
         orderRepository.deleteById(id);
-    }
-
-    public void requestProductDetails(String productId) throws InterruptedException {
-        kafkaTemplate.send("product-details-request", productId);
     }
 
     @KafkaListener(topics = "product-details-response", groupId = "group-3")
