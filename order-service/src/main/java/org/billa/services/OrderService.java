@@ -14,8 +14,11 @@ import java.util.concurrent.TimeUnit;
 
 @Service
 public class OrderService {
+    private final OrderRepository orderRepository;
     @Autowired
-    private OrderRepository orderRepository;
+    public OrderService(OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
+    }
 
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;

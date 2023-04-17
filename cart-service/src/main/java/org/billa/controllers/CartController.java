@@ -10,9 +10,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/carts")
 public class CartController {
+    private final CartService cartService;
     @Autowired
-    private CartService cartService;
-
+    public CartController(CartService cartService) {
+        this.cartService = cartService;
+    }
     @GetMapping("")
     public List<Cart> getAllCarts() {
         return cartService.getAllCarts();

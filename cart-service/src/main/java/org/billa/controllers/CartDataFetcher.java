@@ -13,8 +13,12 @@ import java.util.stream.Collectors;
 
 @DgsComponent
 public class CartDataFetcher {
+    private final CartRepository cartRepository;
+
     @Autowired
-    private CartRepository cartRepository;
+    public CartDataFetcher(CartRepository cartRepository) {
+        this.cartRepository = cartRepository;
+    }
 
     @DgsQuery
     public List<Cart> carts(@InputArgument Long idFilter) {
